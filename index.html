@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>DesignCraft Interiors — Undri Pisoli, Pune</title>
+    <meta name="description"
+        content="Unique furniture and interior solutions in Undri Pisoli, Pune — modular kitchens, wardrobes, beds, doors, dining sets, sofas and chairs." />
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+
+    <!-- Lottie & Icons -->
+     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --accent: #dc2626;
+            --accent-dark: #b91c1c;
+            --card: rgba(255, 255, 255, 0.06);
+            --glass: rgba(255, 255, 255, 0.09);
+            --radius: 32px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 14px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .nav-inner {
+            pointer-events: auto;
+            margin: 0 auto;
+            max-width: 1300px;
+            background: var(--glass);
+            border-radius: var(--radius);
+            padding: 16px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6)
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            font-weight: 600
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            color: var(--text);
+            font-size: 1.6rem;
+            cursor: pointer
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none
+        }
+
+        /* schedule button (shared style) */
+        .btn-book {
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.28);
+            border: 0;
+            cursor: pointer;
+        }
+
+        .btn-book:hover {
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+            transform: translateY(-3px);
+        }
+
+        .hero-cta {
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 20px;
+            font-weight: 700;
+            box-shadow: 0 12px 35px rgba(220, 38, 38, 0.4);
+            transition: all 0.4s;
+        }
+
+        /* keep content clear of the fixed header */
+        main {
+            padding-top: clamp(88px, 12vh, 120px);
+        }
+
+        section {
+            padding: clamp(60px, 10vh, 160px) 20px;
+        }
+
+        .wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .split-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            line-height: 0.95;
+            text-align: center;
+            letter-spacing: -0.03em;
+        }
+
+        .glow {
+            background: linear-gradient(90deg, #fff, var(--accent), #ff8c8c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(24px, 5vw, 48px);
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.6s;
+            backdrop-filter: blur(12px);
+        }
+
+        .card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .heartbeat {
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.18)
+            }
+        }
+
+        /* Floating Booking Button – safe area aware */
+        #booking-fab {
+            position: fixed;
+            right: max(18px, env(safe-area-inset-right, 18px));
+            bottom: max(24px, env(safe-area-inset-bottom, 24px));
+            z-index: 1500;
+        }
+
+        .fab-btn {
+            width: 68px;
+            height: 68px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.55);
+            color: white;
+        }
+
+        /* ===== HERO PRO STYLES ===== */
+        /* ===== HERO – PRO APPLE-STYLE (WORKING 100%) ===== */
+        #hero {
+            min-height: 100dvh;
+            padding: 0 24px 100px;
+            position: relative;
+            background: #000;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(4.5rem, 12vw, 11rem);
+            line-height: 0.92;
+            letter-spacing: -0.05em;
+            text-align: center;
+            margin: 0;
+        }
+
+        .hero-line {
+            display: block;
+            opacity: 0;
+            transform: translateY(200px) rotateX(-90deg);
+            transform-origin: bottom center;
+        }
+
+        .glow {
+            background: linear-gradient(90deg, #ffffff, #ff6b6b, #ff8e8e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.12em;
+            margin-top: -0.1em;
+        }
+
+        .hero-subtitle,
+        .hero-desc,
+        .hero-cta {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        /* Doctor Image – Perfect fit, no manual size needed */
+        .hero-image {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 560px;
+            height: auto;
+            max-height: 78vh;
+            object-fit: cover;
+            object-position: center 15%;
+            border-radius: 40px;
+            box-shadow:
+                0 80px 160px -40px rgba(0, 0, 0, 0.9),
+                0 0 180px rgba(225, 29, 72, 0.25);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Heartbeat animation */
+        @keyframes beat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        .heartbeat {
+            display: inline-block;
+            animation: beat 2.4s infinite ease-in-out;
+        }
+
+        /* Mobile perfection */
+        @media (max-width: 768px) {
+            .hero-image {
+                max-width: 92vw;
+                border-radius: 32px;
+            }
+        }
+
+        /* SVG Icons – GSAP Ready */
+.service-icon {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 20px;
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+  filter: drop-shadow(0 10px 30px rgba(220, 38, 38, 0.4));
+  transition: filter 0.3s ease;
+}
+
+.service-icon:hover {
+  filter: drop-shadow(0 15px 40px rgba(220, 38, 38, 0.6));
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .service-icon { width: 110px; height: 110px; }
+}
+/* ===== TESTIMONIAL CARDS ===== */
+       .title-section {
+  text-align: center;
+  margin-bottom: 120px;
+}
+.glows {
+  background: var(--accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 50px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 36px;
+  padding: 48px 32px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s ease;
+  will-change: transform, opacity;
+}
+.card:hover {
+  transform: translateY(-16px);
+  box-shadow: 0 40px 80px rgba(244,63,94,0.3);
+}
+.card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--color-primary-dark);
+  margin-bottom: 28px;
+}
+.quote {
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 28px;
+  color: var(--color-text-secondary);
+}
+.name {
+  font-weight: 700;
+  color: var(--color-primary-light);
+  font-size: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media(max-width:768px){
+  body { padding: 60px 16px 120px; }
+  .grid { grid-template-columns: 1fr; gap: 32px; }
+  .card { padding: 32px 20px; }
+  .card img { width: 100px; height: 100px; }
+  .quote { font-size: 1.2rem; }
+  .name { font-size: 1rem; }
+}
+
+/* Background glow */
+/* Better version — only affects upper part of page */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 80vh;
+  background: radial-gradient(circle at 50% 20%, rgba(220,38,38,0.08), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+        /* Booking modal */
+        #booking-modal {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        #booking-modal.open {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        #booking-modal .modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.72));
+            backdrop-filter: blur(2px);
+        }
+
+        #booking-modal .modal-card {
+            position: relative;
+            max-width: 900px;
+            width: calc(100% - 48px);
+            border-radius: 16px;
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 18px;
+            z-index: 10;
+        }
+
+        @media (max-width: 880px) {
+            #booking-modal .modal-card {
+                grid-template-columns: 1fr;
+                padding: 18px;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+        }
+
+        .modal-close {
+            background: none;
+            border: 0;
+            color: var(--text);
+            font-size: 1.35rem;
+            cursor: pointer
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 8px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--text);
+        }
+
+        textarea {
+            min-height: 88px;
+            resize: vertical
+        }
+
+        .modal-side {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .send-cta {
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            border: 0;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%
+        }
+
+        #booking-error {
+            color: #ffb4b4;
+            min-height: 20px;
+            font-weight: 700
+        }
+
+        /* Professional Footer */
+        footer {
+            background: #000;
+            padding: 100px 20px 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .socials a {
+            color: var(--muted);
+            font-size: 1.6rem;
+            margin-right: 16px;
+            transition: color 0.4s;
+        }
+
+        .socials a:hover {
+            color: var(--accent);
+        }
+    </style>
+        <style>
+        /* Responsive helpers: improves layout on tablets and phones */
+        @media (max-width: 1280px) {
+            .wrap { padding: 0 20px; }
+            .nav-inner { padding: 14px 18px; }
+        }
+
+        @media (max-width: 1024px) {
+            .wrap { padding: 0 18px; }
+            header { top: 8px; }
+            .nav-inner { padding: 12px 16px; max-width: calc(100% - 36px); }
+            .brand { font-size: clamp(1.2rem, 4vw, 1.8rem); }
+            .nav-links { gap: 12px; }
+            .hero-title { font-size: clamp(2.4rem, 8vw, 6.5rem); }
+            .hero-subtitle { font-size: 1.05rem; }
+            .hero-desc { font-size: 0.95rem; max-width: 90%; }
+            .hero-image { position: static; max-width: 92%; height: auto; margin: 28px auto 0; transform: none; border-radius: 20px; opacity: 1 !important; }
+            .grid { gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+            .card { padding: 20px; border-radius: 18px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+            #booking-modal .modal-card { width: calc(100% - 36px); margin: 0 18px; border-radius: 14px; grid-template-columns: 1fr; }
+            .fab-btn { width: 60px; height: 60px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner { padding: 10px 14px; }
+            .brand { font-size: 1.3rem; }
+            .nav-links { gap: 10px; font-size: 0.9rem; }
+            .hero-title { font-size: clamp(2rem, 7vw, 4.5rem); }
+            .grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+            .card { padding: 16px; border-radius: 16px; }
+            main { padding-top: clamp(70px, 12vh, 100px); }
+        }
+
+        @media (max-width: 640px) {
+            .wrap { padding: 0 16px; }
+            header { top: 6px; }
+            .nav-inner { padding: 10px 12px; margin: 0 6px; }
+            .brand { font-size: 1.1rem; }
+            .menu-toggle { font-size: 1.4rem; }
+            .nav-links { gap: 8px; font-size: 0.85rem; }
+            .hero-title { font-size: clamp(1.8rem, 6vw, 3.8rem); line-height: 1.1; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-desc { font-size: 0.9rem; }
+            .grid { grid-template-columns: 1fr; gap: 14px; }
+            .card { padding: 14px; border-radius: 14px; }
+            .fab-btn { width: 56px; height: 56px; font-size: 1.6rem; }
+            #booking-modal .modal-card { padding: 14px; margin: 0 12px; width: calc(100% - 24px); }
+            main { padding-top: clamp(60px, 10vh, 90px); }
+        }
+
+        @media (max-width: 480px) {
+            .brand { font-size: 1rem; }
+            .nav-links { gap: 6px; font-size: 0.8rem; }
+            .hero-title { font-size: clamp(1.6rem, 5vw, 3rem); }
+            .hero-desc, .hero-subtitle { font-size: 0.85rem; }
+            .fab-btn { width: 52px; height: 52px; font-size: 1.4rem; }
+            #booking-modal .modal-card { padding: 12px; }
+            .card img { width: 88px; height: 88px; }
+            .grid { gap: 12px; }
+            .card { padding: 12px; }
+            main { padding-top: 50px; }
+        }
+
+        /* Ensure mobile menu toggle is usable */
+        @media (max-width: 1023px) {
+            .menu-toggle { display: inline-flex; cursor: pointer; }
+            .nav-links { position: fixed; top: 90px; left: 50%; transform: translateX(-50%); width: 90%; background: var(--glass); backdrop-filter: blur(20px); padding: 20px; border-radius: 24px; flex-direction: column; text-align: center; display: none; z-index: 999; }
+            .nav-links.show-mobile { display: flex !important; }
+        }
+        </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-inner wrap">
+            <div class="brand">DesignCraft Interiors</div>
+            <button class="menu-toggle" aria-label="Menu"><i data-lucide="menu"></i></button>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="resources.html">Resources</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO – FINAL WORKING VERSION -->
+        <section id="hero"
+            class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden">
+            <!-- Subtle background glow -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-black/98 to-black"></div>
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(225,29,72,0.15),transparent_70%)] pointer-events-none">
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto w-full">
+                <!-- Title -->
+                <h1 class="hero-title">
+                    <span class="block hero-line">Unique</span>
+                    <span class="block hero-line glow">Furniture & Interior</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="hero-subtitle mt-8 text-2xl md:text-4xl font-light text-gray-200">
+                    Undri Pisoli, Pune, Maharashtra
+                </p>
+
+                <!-- Description -->
+                <p class="hero-desc mt-6 text-lg md:text-2xl text-gray-400 max-w-4xl mx-auto font-light">
+                    Modular kitchens, wardrobes, beds, safety doors, dining sets, sofas and chairs — crafted to fit your home.
+                </p>
+
+                <!-- CTA Button -->
+                <button onclick="openBooking()"
+                    class="hero-cta mt-12 px-12 py-6 text-xl md:text-2xl font-bold text-white bg-gradient-to-r from-rose-600 to-rose-500 rounded-2xl shadow-2xl hover:shadow-rose-500/60 transform hover:scale-105 transition-all duration-500">
+                    Request a Quote
+                </button>
+            </div>
+
+            <!-- Doctor Image – Auto-fit + Cinematic -->
+            <img src="pexels-houzlook-3356416.jpg" alt="Interior showroom" class="hero-image" loading="lazy">
+        </section>
+        <!-- Services -->
+    <!-- Services - BULLETPROOF VERSION -->
+<!-- Services – FIXED WITH SVG ICONS + GSAP (No Lottie Needed) -->
+<section id="services">
+  <div class="wrap text-center">
+                        <h2 class="split-title">Our<br><span class="glow">Services</span></h2>
+        <div class="grid mt-16">
+            <div class="card p-8 text-center reveal">
+                <h3 class="text-2xl mt-2 mb-4">Modular Kitchen</h3>
+                <p>Custom modular kitchens designed for style and utility.</p>
+            </div>
+            <div class="card p-8 text-center reveal">
+                <h3 class="text-2xl mt-2 mb-4">Wardrobe</h3>
+                <p>Space-optimised wardrobes with premium finishes.</p>
+            </div>
+            <div class="card p-8 text-center reveal">
+                <h3 class="text-2xl mt-2 mb-4">Bed & Bedroom Sets</h3>
+                <p>Comfortable beds and coordinated bedroom interiors.</p>
+            </div>
+            <div class="card p-8 text-center reveal">
+                <h3 class="text-2xl mt-2 mb-4">Safety Door</h3>
+                <p>Sturdy, secure doors tailored for residential safety.</p>
+            </div>
+            <div class="card p-8 text-center reveal">
+                <h3 class="text-2xl mt-2 mb-4">Dining Table Sets</h3>
+                <p>Elegant dining tables and matching chairs for family dining.</p>
+            </div>
+            <div class="card p-8 text-center reveal">
+                <h3 class="text-2xl mt-2 mb-4">Sofa & Chairs</h3>
+                <p>Comfortable sofas and seating solutions for living rooms.</p>
+            </div>
+        </div>
+  </div>
+</section>
+
+       <section>
+<!-- Headline -->
+<div class="title-section">
+  <h2><span class="glows">Success Stories</span></h2>
+</div>
+
+<!-- Cards -->
+<div class="grid">
+  <div class="card">
+    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Robert">
+    <p class="quote">“Dr. Chen saved my life. She found my blockage early.”</p>
+    <p class="name">— Robert M., 62</p>
+  </div>
+  <div class="card">
+    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Linda">
+    <p class="quote">“Finally a cardiologist who truly listens and cares.”</p>
+    <p class="name">— Linda T.</p>
+  </div>
+  <div class="card">
+    <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="James">
+    <p class="quote">“The best medical experience I’ve ever had.”</p>
+    <p class="name">— James K.</p>
+  </div>
+</div>
+</section>
+
+        <!-- Contact & Map -->
+        <section id="contact">
+            <div class="wrap text-center">
+                <h2 class="split-title">Visit<br><span class="glow">DesignCraft Interiors</span></h2>
+                <p class="text-2xl mt-8 animate-text">Undri Pisoli, Pune, Maharashtra</p>
+                <p class="text-xl text-gray-400 mt-4 animate-text">Phone: <a href="tel:+917300535365" class="hover:text-white">7300535365</a></p>
+                <div class="mt-12 rounded-3xl overflow-hidden shadow-2xl max-w-5xl mx-auto reveal">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.541!2d-122.335!3d47.608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDM2JzI5LjAiTiAxMjLCsDE5JzUwLjQiVw!5e0!3m2!1sen!2sus!4v1234567890"
+                        width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Professional Footer -->
+    <footer>
+        <div class="wrap footer-grid text-left">
+            <div>
+                <div class="footer-logo">DesignCraft Interiors</div>
+                <p class="text-gray-400 mt-4">Custom furniture and interior solutions in Undri Pisoli, Pune.</p>
+                <div class="socials mt-6">
+                    <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                    <li><a href="#testimonials" class="hover:text-white transition">Patient Stories</a></li>
+                    <li><a href="#" class="hover:text-white transition">New Patient Forms</a></li>
+                    <li><a href="#" class="hover:text-white transition">Insurance & Billing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Contact</h4>
+                <p class="text-gray-400">Phone: <a href="tel:+917300535365" class="hover:text-white">7300535365</a><br>
+                    Location: Undri Pisoli, Pune, Maharashtra</p>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Location & Hours</h4>
+                <p class="text-gray-400">123 Wellness Ave, Suite 500<br>Seattle, WA 98101<br><br>
+                    Mon–Fri: 8:00 AM – 5:00 PM<br>Sat–Sun: Emergency Only</p>
+            </div>
+        </div>
+        <div class="text-center text-gray-500 text-sm mt-16 pt-8 border-t border-gray-800">
+            © 2026 DesignCraft Interiors. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Floating Book Button -->
+    <div id="booking-fab">
+        <button onclick="openBooking()" class="fab-btn heartbeat" aria-label="Book Appointment">
+            <i data-lucide="calendar-heart" style="width:38px;height:38px;"></i>
+        </button>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Book appointment form">
+        <div class="modal-backdrop" onclick="closeBooking()"></div>
+        <div class="modal-card" role="document" aria-labelledby="modal-title">
+            <div>
+                        <div class="modal-header">
+                            <div>
+                                <div id="modal-title" class="modal-title">Request a Quote</div>
+                                <div style="color:var(--muted);margin-top:6px;">Choose a preferred date & time — we'll send your
+                                    request to WhatsApp for confirmation.</div>
+                            </div>
+                    <button class="modal-close" aria-label="Close booking" onclick="closeBooking()"><i
+                            data-lucide="x"></i></button>
+                </div>
+
+                <form id="booking-form" class="modal-form" onsubmit="sendAppointmentToWhatsApp(event)">
+                    <div id="booking-error" aria-live="polite" role="status"></div>
+                    <div class="field"><label for="b-name">Full name</label><input id="b-name" type="text"
+                            placeholder="Your full name" required></div>
+                    <div class="field"><label for="b-phone">Mobile phone</label><input id="b-phone" type="tel"
+                            placeholder="e.g. +1 555 555 5555" required></div>
+                    <div class="field"><label for="b-email">Email (optional)</label><input id="b-email" type="email"
+                            placeholder="you@domain.com"></div>
+                    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                        <div style="flex:1" class="field"><label for="b-date">Preferred date</label><input id="b-date"
+                                type="date" required></div>
+                        <div style="width:150px" class="field"><label for="b-time">Preferred time</label><input
+                                id="b-time" type="time" required></div>
+                    </div>
+                        <div class="field"><label for="b-notes">Notes / details (optional)</label><textarea
+                            id="b-notes" placeholder="Project details, measurements, style preferences"></textarea></div>
+                        <div style="display:flex;gap:10px;margin-top:6px;align-items:center">
+                        <button class="send-cta" type="submit">Send request to WhatsApp</button>
+                        <button type="button" onclick="closeBooking()"
+                            style="background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;color:var(--text);">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <aside class="modal-side">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+                    <div
+                        style="width:56px;height:56px;border-radius:14px;background:linear-gradient(90deg,var(--accent),#ff8a8a);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#fff">
+                        SC</div>
+                    <div>
+                        <div style="font-weight:800">DesignCraft Interiors</div>
+                        <div style="color:var(--muted);font-size:13px">Furniture & Interior Solutions — Undri Pisoli, Pune</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px;color:var(--muted);font-size:14px">Appointments are confirmed by staff via
+                    WhatsApp or phone. Please include a brief reason for your visit if possible for faster triage.</div>
+                <div
+                    style="margin-top:18px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)">
+                    <div style="font-weight:800">Office Hours</div>
+                    <div style="color:var(--muted);margin-top:6px;line-height:1.6">Mon–Fri: 8:00 AM – 5:00 PM<br>Sat:
+                        Emergency only</div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script defer>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger, SplitText);
+        const heroTL = gsap.timeline({
+            defaults: { ease: "power4.out" }
+        });
+
+        // 1. Title – Line by line, 3D flip reveal
+        const lines = document.querySelectorAll(".hero-line");
+        lines.forEach((line, i) => {
+            const chars = new SplitText(line, { type: "chars" }).chars;
+
+            heroTL.from(chars, {
+                duration: 1.6,
+                y: 280,
+                rotationX: -110,
+                opacity: 0,
+                stagger: 0.04,
+                ease: "back.out(1.8)",
+                transformOrigin: "50% 50% -140px"
+            }, i * 0.4);
+        });
+
+        // 2. Subtitle + Desc + CTA
+        heroTL
+            .to(".hero-subtitle", { opacity: 1, y: 0, duration: 1.2 }, "-=1")
+            .to(".hero-desc", { opacity: 1, y: 0, duration: 1.4 }, "-=0.9")
+            .to(".hero-cta", { opacity: 1, y: 0, duration: 1.6, scale: 1 }, "-=1.1");
+
+        // 3. Doctor Image – Cinematic entrance with parallax
+        gsap.fromTo(".hero-image",
+            {
+                opacity: 0,
+                y: 200,
+                scale: 0.88,
+                rotation: -4
+            },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                rotation: 0,
+                duration: 2.8,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "top top",
+                    end: "+=800",
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1
+                }
+            }
+        );
+
+        // Optional: Subtle parallax on scroll
+        gsap.to(".hero-image", {
+            yPercent: -20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
+
+        // 3D scroll-triggered entrance
+        gsap.to(".testimonial-card", {
+            opacity: 1,
+            y: 0,
+            rotationX: 0,
+            scale: 1,
+            duration: 1.8,
+            ease: "back.out(1.4)",
+            stagger: {
+                each: 0.3,
+                from: "start"
+            },
+            scrollTrigger: {
+                trigger: "#testimonials",
+                start: "top 70%",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // Title animation
+        document.querySelectorAll(".split-title span").forEach((line, i) => {
+            const chars = new SplitText(line, { type: "chars" }).chars;
+            gsap.from(chars, {
+                y: 200,
+                rotationX: -90,
+                opacity: 0,
+                stagger: 0.04,
+                duration: 1.6,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                    trigger: line,
+                    start: "top 85%",
+                }
+            });
+        });
+
+        // Animate all titles
+        document.querySelectorAll(".split-title").forEach(t => {
+            const split = new SplitText(t, { type: "chars,words,lines" });
+            gsap.from(split.chars, {
+                opacity: 0, y: 120, rotationX: -90, stagger: 0.02, duration: 1.4, ease: "back.out(1.7)",
+                scrollTrigger: { trigger: t, start: "top 80%", toggleActions: "play none none reverse" }
+            });
+        });
+
+        // Animate all paragraphs & cards
+        gsap.utils.toArray(".animate-text, .reveal").forEach(el => {
+            gsap.from(el, {
+                opacity: 0, y: 60, duration: 1.2, ease: "power3.out",
+                scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
+            });
+        });
+
+        // Hero image floating
+        gsap.to(".floating", { y: 30, rotation: 2, duration: 12, repeat: -1, yoyo: true, ease: "sine.inOut" });
+
+        // Header shrink on scroll
+        ScrollTrigger.create({ onUpdate: self => document.querySelector(".nav-inner").classList.toggle("scrolled", self.progress > 0.1) });
+
+        // Booking (open modal)
+        const businessNumber = '917300535365'; // Unique Furniture & Interior WhatsApp number (no +)
+
+        let _bookingLastFocus;
+        function _trapBookingFocus(e) {
+            const modal = document.getElementById('booking-modal');
+            if (!modal || modal.getAttribute('aria-hidden') === 'true') return;
+            if (e.key !== 'Tab') return;
+            const focusable = modal.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])');
+            if (!focusable.length) return;
+            const first = focusable[0], last = focusable[focusable.length - 1];
+            if (e.shiftKey) {
+                if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+            } else {
+                if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
+        }
+
+        function openBooking() {
+            _bookingLastFocus = document.activeElement;
+            document.documentElement.style.overflow = 'hidden';
+            const modal = document.getElementById('booking-modal');
+            if (!modal) return;
+            modal.setAttribute('aria-hidden', 'false');
+            modal.classList.add('open');
+            // animate modal in
+            gsap.fromTo('#booking-modal .modal-card', { y: 40, opacity: 0, scale: 0.98 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.2)' });
+            // focus first input for accessibility and attach trap
+            setTimeout(() => { document.getElementById('b-name')?.focus(); document.addEventListener('keydown', _trapBookingFocus); }, 220);
+        }
+
+        function closeBooking() {
+            const modal = document.getElementById('booking-modal');
+            if (!modal) return;
+            modal.setAttribute('aria-hidden', 'true');
+            modal.classList.remove('open');
+            document.documentElement.style.overflow = '';
+            document.removeEventListener('keydown', _trapBookingFocus);
+            try { _bookingLastFocus?.focus(); } catch (e) { }
+        }
+
+        // Build whatsapp message and open link
+        function sendAppointmentToWhatsApp(e) {
+            e.preventDefault();
+            const name = (document.getElementById('b-name')?.value || '').trim();
+            const phone = (document.getElementById('b-phone')?.value || '').trim();
+            const email = (document.getElementById('b-email')?.value || '').trim();
+            const notes = (document.getElementById('b-notes')?.value || '').trim();
+            const date = (document.getElementById('b-date')?.value || '').trim();
+            const time = (document.getElementById('b-time')?.value || '').trim();
+
+            // minimal validation
+            if (!name || !phone || !date || !time) {
+                const err = document.getElementById('booking-error');
+                err.textContent = 'Please enter your name, phone, date and time.';
+                gsap.fromTo(err, { y: -6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+                return;
+            }
+
+            const lines = [];
+            lines.push('Quote request for DesignCraft Interiors');
+            lines.push(`Name: ${name}`);
+            lines.push(`Phone: ${phone}`);
+            if (email) lines.push(`Email: ${email}`);
+            lines.push(`Preferred date: ${date}`);
+            lines.push(`Preferred time: ${time}`);
+            if (notes) lines.push(`Notes: ${notes}`);
+            lines.push('\nPlease confirm available slots and reply with next steps.');
+
+            const message = encodeURIComponent(lines.join('\n'));
+            const url = businessNumber ? `https://wa.me/${businessNumber}?text=${message}` : `https://wa.me/?text=${message}`;
+
+            // open WhatsApp in new tab / app
+            window.open(url, '_blank');
+            // close modal and show micro feedback
+            closeBooking();
+            toast('Appointment request opened in WhatsApp — send it to confirm.');
+            // optionally, clear fields
+            document.getElementById('booking-form')?.reset();
+        }
+
+        // small toast helper
+        function toast(msg) {
+            const t = document.createElement('div');
+            t.className = 'micro-toast';
+            t.textContent = msg;
+            Object.assign(t.style, { position: 'fixed', right: '18px', bottom: '94px', padding: '10px 14px', background: 'linear-gradient(90deg,var(--accent),#ff8a8a)', color: '#fff', borderRadius: '10px', zIndex: 9999, boxShadow: '0 12px 30px rgba(0,0,0,0.3)' });
+            document.body.appendChild(t);
+            gsap.fromTo(t, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' });
+            setTimeout(() => gsap.to(t, { y: 20, opacity: 0, duration: 0.5, ease: 'power2.in', onComplete: () => t.remove() }), 2500);
+        }
+
+        // close booking with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBooking();
+        });
+
+        // Mobile menu (simple toggle)
+        document.querySelector(".menu-toggle")?.addEventListener("click", () => {
+            document.querySelector(".nav-links").classList.toggle("show-mobile");
+
+        });
+        // Animate Title Section
+gsap.from(".title-section h2", {
+  y: 120,
+  opacity: 0,
+  duration: 1.6,
+  ease: "power4.out",
+  stagger: 0.2,
+  scrollTrigger: {
+    trigger: ".title-section",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  }
+});
+
+// Services Icons – Apple-Level Float + Pulse
+gsap.utils.toArray(".service-icon").forEach((icon, i) => {
+  // Entrance animation
+  gsap.to(icon, {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 1.6,
+    ease: "back.out(1.7)",
+    delay: i * 0.15,
+    scrollTrigger: { trigger: icon.closest(".card"), start: "top 85%" }
+  });
+
+  // Float animation
+  gsap.to(icon, {
+    y: -10,
+    duration: 2 + i * 0.5,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut"
+  });
+
+  // Pulse on hover
+  icon.closest(".card").addEventListener("mouseenter", () => {
+    gsap.to(icon, { scale: 1.1, duration: 0.4, ease: "back.out(1.7)" });
+  });
+  icon.closest(".card").addEventListener("mouseleave", () => {
+    gsap.to(icon, { scale: 1, duration: 0.4 });
+  });
+});
+
+// Animate each card on scroll
+gsap.utils.toArray(".card").forEach((card, i) => {
+  const quote = card.querySelector(".quote");
+  const name = card.querySelector(".name");
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: card,
+      start: "top 90%", // trigger slightly earlier
+      end: "top 50%",
+      scrub: false, // no scrub for sequential animation
+      toggleActions: "play none none reverse"
+    }
+  });
+
+  // Animate container
+  tl.from(card, {
+    y: 50,
+    opacity: 0,
+    scale: 0.95,
+    duration: 0.8,
+    ease: "power3.out"
+  })
+  // Animate quote
+  .from(quote, {
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out"
+  }, "-=0.4")
+  // Animate name
+  .from(name, {
+    y: 10,
+    opacity: 0,
+    duration: 0.5,
+    ease: "power2.out"
+  }, "-=0.4")
+  // Slight scale up for a pop effect
+  .to(card, {
+    scale: 1.02,
+    duration: 0.6,
+    ease: "power2.out"
+  }, "-=0.3");
+});
+
+// Optional: subtle parallax while scrolling
+gsap.utils.toArray(".card").forEach((card, i) => {
+  gsap.to(card, {
+    yPercent: -5 - i * 2,
+    ease: "none",
+    scrollTrigger: {
+      trigger: "body",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 0.4
+    }
+  });
+});
+
+// Mobile adjustments
+if(window.innerWidth < 768){
+  gsap.utils.toArray(".card").forEach((card, i) => {
+    gsap.to(card, {
+      scale: 1.01,
+      rotation: i % 2 === 0 ? 0.5 : -0.5,
+      ease: "none",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 95%",
+        end: "bottom top",
+        scrub: 0.5
+      }
+    });
+  });
+}
+
+// Refresh ScrollTrigger on resize
+window.addEventListener("resize", () => ScrollTrigger.refresh());
+    </script>
+
+    <style>
+        @media (max-width:1023px) {
+            .nav-links {
+                position: fixed;
+                top: 90px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                background: var(--glass);
+                backdrop-filter: blur(20px);
+                padding: 20px;
+                border-radius: 24px;
+                flex-direction: column;
+                text-align: center;
+                display: none;
+            }
+
+            .nav-links.show-mobile {
+                display: flex;
+            }
+        }
+    </style>
+        <!-- WhatsApp floating button -->
+        <style>
+            .whatsapp-fab{position:fixed;right:max(18px,env(safe-area-inset-right,18px));bottom:110px;z-index:1600}
+            .whatsapp-fab a{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none;box-shadow:0 12px 36px rgba(37,211,102,0.22);transition:transform .18s ease}
+            .whatsapp-fab a:hover{transform:translateY(-4px)}
+            .whatsapp-fab i{width:28px;height:28px}
+            @media(max-width:480px){.whatsapp-fab{bottom:94px}.whatsapp-fab a{width:56px;height:56px}}
+        </style>
+
+        <div class="whatsapp-fab" aria-hidden="false">
+            <a href="https://wa.me/917300535365?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20furniture%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+                <i data-lucide="message-circle"></i>
+            </a>
+        </div>
+</body>
+
+</html>

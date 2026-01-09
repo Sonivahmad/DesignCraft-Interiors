@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Services — DesignCraft Interiors</title>
+  <meta name="description"
+    content="Services: modular kitchens, wardrobes, beds, safety doors, dining table sets, sofas and chairs — DesignCraft Interiors, Pune." />
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+
+  <!-- Lottie & Icons -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #dc2626;
+      --accent-dark: #b91c1c;
+      --card: rgba(255, 255, 255, 0.06);
+      --glass: rgba(255, 255, 255, 0.09);
+      --radius: 28px
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: Inter, system-ui;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px
+    }
+
+    header {
+      position: fixed;
+      top: 14px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      pointer-events: none
+    }
+
+    .nav-inner {
+      pointer-events: auto;
+      margin: 0 auto;
+      max-width: 1300px;
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6)
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-weight: 600
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      color: var(--text);
+      font-size: 1.6rem;
+      cursor: pointer
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none
+    }
+
+    /* schedule button (shared style) */
+    .btn-book {
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(220, 38, 38, 0.28);
+      border: 0;
+      cursor: pointer;
+    }
+
+    .btn-book:hover {
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      transform: translateY(-3px);
+    }
+
+    main {
+      padding-top: clamp(88px, 12vh, 120px);
+    }
+
+    .hero {
+      padding: 90px 24px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 28px;
+      align-items: center
+    }
+
+    .split-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 6vw, 4.2rem)
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.06)
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    
+
+    /* PREMIUM GSAP-READY SERVICE CARDS — PERFECT ALIGNMENT & ANIMATIONS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 32px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  border-color: var(--accent);
+  box-shadow: 0 40px 80px rgba(220, 38, 38, 0.4);
+}
+
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #fff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+  /* FIX: Make cards visible + beautiful */
+.reveal {
+  opacity: 1 !important;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
+}
+
+.reveal:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(220,38,38,0.3);
+  border-color: var(--accent);
+}
+
+.reveal h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+    footer {
+      padding: 80px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 40px;
+    }
+
+    /* modal copy from main */
+    #booking-modal {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    #booking-modal.open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    #booking-modal .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.72));
+      backdrop-filter: blur(2px);
+    }
+
+    #booking-modal .modal-card {
+      position: relative;
+      max-width: 900px;
+      width: calc(100% - 48px);
+      border-radius: 16px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      z-index: 10;
+    }
+
+    @media(max-width:880px) {
+      #booking-modal .modal-card {
+        grid-template-columns: 1fr;
+        padding: 18px
+      }
+    }
+
+    @media (max-width:1023px) {
+      .nav-links {
+        position: fixed;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        padding: 20px;
+        border-radius: 24px;
+        flex-direction: column;
+        text-align: center;
+        display: none;
+      }
+
+      .nav-links.show-mobile {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: inline-flex
+      }
+    }
+  </style>
+  <!-- WhatsApp floating button -->
+  <style>
+    .whatsapp-fab{position:fixed;right:max(18px,env(safe-area-inset-right,18px));bottom:110px;z-index:1600}
+    .whatsapp-fab a{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none;box-shadow:0 12px 36px rgba(37,211,102,0.22);transition:transform .18s ease}
+    .whatsapp-fab a:hover{transform:translateY(-4px)}
+    .whatsapp-fab i{width:28px;height:28px}
+    @media(max-width:480px){.whatsapp-fab{bottom:94px}.whatsapp-fab a{width:56px;height:56px}}
+  </style>
+
+  <div class="whatsapp-fab" aria-hidden="false">
+    <a href="https://wa.me/917300535365?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20furniture%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <i data-lucide="message-circle"></i>
+    </a>
+  </div>
+  <style>
+  /* Responsive helpers for Services page */
+  @media (max-width: 1280px) {
+    .wrap { padding: 0 20px; }
+  }
+
+  @media (max-width: 1024px) {
+    .wrap { padding: 0 18px; }
+    header { top: 8px; }
+    .nav-inner { padding: 12px 16px; max-width: calc(100% - 36px); }
+    .brand { font-size: clamp(1.2rem, 4vw, 1.8rem); }
+    .nav-links { gap: 12px; }
+    .hero { grid-template-columns: 1fr; padding: 48px 18px; gap: 28px; }
+    .split-title { font-size: clamp(2rem, 8vw, 4rem); }
+    .grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .card { padding: 18px; border-radius: 16px; }
+    #booking-modal .modal-card { width: calc(100% - 36px); margin: 0 18px; grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner { padding: 10px 14px; }
+    .brand { font-size: 1.3rem; }
+    .nav-links { gap: 10px; font-size: 0.9rem; }
+    .split-title { font-size: clamp(1.8rem, 7vw, 3.6rem); }
+    .grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+    .card { padding: 16px; border-radius: 16px; }
+    main { padding-top: clamp(70px, 12vh, 100px); }
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    header { top: 6px; }
+    .nav-inner { padding: 10px 12px; margin: 0 6px; }
+    .brand { font-size: 1.15rem; }
+    .menu-toggle { font-size: 1.4rem; display: inline-flex; }
+    .nav-links { gap: 8px; font-size: 0.85rem; }
+    .split-title { font-size: clamp(1.6rem, 6vw, 3.2rem); line-height: 1.1; }
+    .grid { grid-template-columns: 1fr; gap: 14px; }
+    .card { padding: 14px; border-radius: 14px; }
+    #booking-modal .modal-card { padding: 14px; margin: 0 12px; width: calc(100% - 24px); }
+    main { padding-top: clamp(60px, 10vh, 90px); }
+  }
+
+  @media (max-width: 480px) {
+    .brand { font-size: 1rem; }
+    .nav-links { gap: 6px; font-size: 0.8rem; }
+    .split-title { font-size: clamp(1.4rem, 5vw, 2.8rem); }
+    .card h3 { font-size: 1rem; }
+    .card p { font-size: 0.85rem; }
+    main { padding-top: 50px; }
+  }
+
+  /* Mobile menu toggle */
+  @media (max-width: 1023px) {
+    .menu-toggle { display: inline-flex; cursor: pointer; }
+    .nav-links { position: fixed; top: 90px; left: 50%; transform: translateX(-50%); width: 90%; background: var(--glass); backdrop-filter: blur(20px); padding: 20px; border-radius: 24px; flex-direction: column; text-align: center; display: none; z-index: 999; }
+    .nav-links.show-mobile { display: flex !important; }
+  }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-inner wrap">
+      <div class="brand">DesignCraft Interiors</div>
+      <button class="menu-toggle" aria-label="Menu"><i data-lucide="menu"></i></button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <h1 class="split-title">Products &<br><span class="glow">Services</span></h1>
+            <p style="color:var(--muted);margin-top:10px">Design, manufacture and installation of bespoke furniture and interiors.</p>
+            <div class="grid">
+              <div class="card reveal">
+                <h3 style="margin-bottom:6px">Modular Kitchens</h3>
+                <p style="color:var(--muted)">End-to-end kitchen design, cabinetry & installation.</p>
+              </div>
+              <div class="card reveal">
+                <h3 style="margin-bottom:6px">Wardrobes</h3>
+                <p style="color:var(--muted)">Custom wardrobes optimized for storage and style.</p>
+              </div>
+              <div class="card reveal">
+                <h3 style="margin-bottom:6px">Beds & Bedroom Sets</h3>
+                <p style="color:var(--muted)">Comfortable beds and coordinated bedroom furniture.</p>
+              </div>
+              <div class="card reveal">
+                <h3 style="margin-bottom:6px">Safety Doors</h3>
+                <p style="color:var(--muted)">Secure doors with quality hardware and finishes.</p>
+              </div>
+              <div class="card reveal">
+                <h3 style="margin-bottom:6px">Dining Sets</h3>
+                <p style="color:var(--muted)">Dining tables and chairs in multiple styles.</p>
+              </div>
+              <div class="card reveal">
+                <h3 style="margin-bottom:6px">Sofas & Chairs</h3>
+                <p style="color:var(--muted)">Upholstered sofas and seating solutions.</p>
+              </div>
+            </div>
+      </div>
+    </section>
+
+    <section style="margin-top:40px">
+      <h2 class="split-title">Our Approach</h2>
+      <p style="color:var(--muted);max-width:780px;margin:14px auto">We focus on early detection and lifestyle-based
+        prevention that complements evidence-based interventions.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div
+      style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;justify-content:space-between;max-width:1200px;margin:0 auto;padding-top:32px;color:var(--muted)">
+      <div style="min-width:220px;">
+        <div
+          style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">
+          DesignCraft Interiors</div>
+        <div style="margin-top:8px">Compassionate heart care focused on prevention.</div>
+      </div>
+        <div style="min-width:220px;line-height:1.6">Phone: <a href="tel:+917300535365"
+          style="color:var(--muted);text-decoration:none">7300535365</a><br>Email: <a
+          href="mailto:info@uniquefurniture.com" style="color:var(--muted);text-decoration:none">info@uniquefurniture.com</a>
+      </div>
+    </div>
+    <div style="margin-top:28px;text-align:center;color:var(--muted);font-size:13px">© 2026 DesignCraft Interiors</div>
+  </footer>
+
+  <!-- booking modal (same markup + send helper included in main script) -->
+  <div id="booking-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Book appointment form">
+    <div class="modal-backdrop" onclick="closeBooking()"></div>
+    <div class="modal-card" role="document" aria-labelledby="modal-title">
+      <div>
+        <div class="modal-header">
+          <div>
+            <div id="modal-title" class="modal-title">Request an Appointment</div>
+            <div style="color:var(--muted);margin-top:6px;">Choose a preferred date & time — we'll send your request to
+              WhatsApp for confirmation.</div>
+          </div>
+          <button class="modal-close" aria-label="Close booking" onclick="closeBooking()"><i
+              data-lucide="x"></i></button>
+        </div>
+
+        <form id="booking-form" class="modal-form" onsubmit="sendAppointmentToWhatsApp(event)">
+          <div id="booking-error" aria-live="polite" role="status"></div>
+          <div class="field"><label for="b-name">Full name</label><input id="b-name" type="text"
+              placeholder="Your full name" required></div>
+          <div class="field"><label for="b-phone">Mobile phone</label><input id="b-phone" type="tel"
+              placeholder="e.g. +1 555 555 5555" required></div>
+          <div class="field"><label for="b-email">Email (optional)</label><input id="b-email" type="email"
+              placeholder="you@domain.com"></div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <div style="flex:1" class="field"><label for="b-date">Preferred date</label><input id="b-date" type="date"
+                required></div>
+            <div style="width:150px" class="field"><label for="b-time">Preferred time</label><input id="b-time"
+                type="time" required></div>
+          </div>
+          <div class="field"><label for="b-notes">Notes / reason for visit (optional)</label><textarea id="b-notes"
+              placeholder="Concerns, brief medical history, helper notes"></textarea></div>
+          <div style="display:flex;gap:10px;margin-top:6px;align-items:center">
+            <button class="send-cta" type="submit">Send appointment to WhatsApp</button>
+            <button type="button" onclick="closeBooking()"
+              style="background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;color:var(--text);">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="modal-side">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+          <div
+            style="width:56px;height:56px;border-radius:14px;background:linear-gradient(90deg,var(--accent),#ff8a8a);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#fff">
+            UF</div>
+          <div>
+            <div style="font-weight:800">DesignCraft Interiors</div>
+            <div style="color:var(--muted);font-size:13px">Furniture & Interior Solutions</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;color:var(--muted);font-size:14px">Appointments are confirmed by staff via WhatsApp
+          or phone. Please include a brief reason for your visit if possible for faster triage.</div>
+        <div
+          style="margin-top:18px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)">
+          <div style="font-weight:800">Office Hours</div>
+          <div style="color:var(--muted);margin-top:6px;line-height:1.6">Mon–Fri: 8:00 AM – 5:00 PM<br>Sat: Emergency
+            only</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    document.querySelectorAll('.split-title').forEach(t => {
+      const s = new SplitText(t, { type: 'chars,words,lines' });
+      gsap.from(s.chars, { opacity: 0, y: 80, stagger: 0.02, duration: 0.9, ease: 'back.out(1.6)', scrollTrigger: { trigger: t, start: 'top 90%', toggleActions: 'play reverse play reverse' } });
+    });
+
+    gsap.utils.toArray('.reveal').forEach(el => { gsap.from(el, { opacity: 0, y: 50, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play reverse play reverse' } }) });
+
+    // header shrink on scroll
+    ScrollTrigger.create({ onUpdate(self) { document.querySelector('.nav-inner')?.classList.toggle('scrolled', self.progress > 0.05); } });
+
+    // booking helper functions (copy) — keeps this page self-contained
+    const businessNumber = '917300535365';
+    let _bookingLastFocus;
+    function _trapBookingFocus(e) { const modal = document.getElementById('booking-modal'); if (!modal || modal.getAttribute('aria-hidden') === 'true') return; if (e.key !== 'Tab') return; const focusable = modal.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'); if (!focusable.length) return; const first = focusable[0], last = focusable[focusable.length - 1]; if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } } else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } } }
+    function openBooking() { _bookingLastFocus = document.activeElement; const modal = document.getElementById('booking-modal'); if (!modal) return; document.documentElement.style.overflow = 'hidden'; modal.setAttribute('aria-hidden', 'false'); modal.classList.add('open'); gsap.fromTo('#booking-modal .modal-card', { y: 40, opacity: 0, scale: 0.98 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.2)' }); setTimeout(() => { document.getElementById('b-name')?.focus(); document.addEventListener('keydown', _trapBookingFocus); }, 220); }
+    function closeBooking() { const modal = document.getElementById('booking-modal'); if (!modal) return; modal.setAttribute('aria-hidden', 'true'); modal.classList.remove('open'); document.documentElement.style.overflow = ''; document.removeEventListener('keydown', _trapBookingFocus); try { _bookingLastFocus?.focus(); } catch (e) { } }
+    function sendAppointmentToWhatsApp(e) { e.preventDefault(); const name = (document.getElementById('b-name')?.value || '').trim(); const phone = (document.getElementById('b-phone')?.value || '').trim(); const date = (document.getElementById('b-date')?.value || '').trim(); const time = (document.getElementById('b-time')?.value || '').trim(); if (!name || !phone || !date || !time) { const err = document.getElementById('booking-error'); err.textContent = 'Please enter name, phone, date & time.'; gsap.fromTo(err, { y: -6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25 }); return; } const email = (document.getElementById('b-email')?.value || '').trim(); const notes = (document.getElementById('b-notes')?.value || '').trim(); let lines = ['Quote request for DesignCraft Interiors', `Name: ${name}`, `Phone: ${phone}`]; if (email) lines.push(`Email: ${email}`); lines.push(`Preferred date: ${date}`); lines.push(`Preferred time: ${time}`); if (notes) lines.push(`Notes: ${notes}`); lines.push('\nPlease confirm available slots and reply.'); const message = encodeURIComponent(lines.join('\n')); const url = businessNumber ? `https://wa.me/${businessNumber}?text=${message}` : `https://wa.me/?text=${message}`; window.open(url, '_blank'); closeBooking(); toast('Opened WhatsApp — send to confirm.'); document.getElementById('booking-form')?.reset(); }
+    function toast(msg) { const t = document.createElement('div'); t.className = 'micro-toast'; t.textContent = msg; Object.assign(t.style, { position: 'fixed', right: '18px', bottom: '94px', padding: '10px 14px', background: 'linear-gradient(90deg,var(--accent),#ff8a8a)', color: '#fff', borderRadius: '10px', zIndex: 9999, boxShadow: '0 12px 30px rgba(0,0,0,0.3)' }); document.body.appendChild(t); gsap.fromTo(t, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45 }); setTimeout(() => gsap.to(t, { y: 20, opacity: 0, duration: 0.45, onComplete: () => t.remove() }), 2500); }
+    // ESC key
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBooking(); });
+    // mobile menu behavior
+    document.querySelector('.menu-toggle')?.addEventListener('click', () => document.querySelector('.nav-links')?.classList.toggle('show-mobile'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.querySelector('.nav-links')?.classList.remove('show-mobile')));
+    window.addEventListener('resize', () => { if (window.innerWidth > 1024) document.querySelector('.nav-links')?.classList.remove('show-mobile'); });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>About — DesignCraft Interiors | Undri Pisoli, Pune</title>
+
+  <!-- SEO -->
+  <meta name="description"
+    content="DesignCraft Interiors — custom furniture, modular kitchens, wardrobes and interior solutions in Undri Pisoli, Pune." />
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #dc2626;
+      --accent-dark: #b91c1c;
+      --glass: rgba(255, 255, 255, 0.08);
+      --card: rgba(255, 255, 255, 0.06);
+      --radius: 32px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* --------------------------- HEADER --------------------------- */
+    header {
+      position: fixed;
+      top: 14px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .nav-inner {
+      pointer-events: auto;
+      margin: 0 auto;
+      max-width: 1300px;
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6)
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-weight: 600
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      color: var(--text);
+      font-size: 1.6rem;
+      cursor: pointer
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none
+    }
+
+    /* schedule button (shared style) */
+    .btn-book {
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(220, 38, 38, 0.28);
+      border: 0;
+      cursor: pointer;
+    }
+
+    .btn-book:hover {
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      transform: translateY(-3px);
+    }
+
+    /* --------------------------- LAYOUT --------------------------- */
+    main {
+      padding-top: clamp(88px, 12vh, 120px);
+    }
+
+    .wrap {
+      max-width: 1400px;
+      margin: auto;
+      padding: 0 22px;
+    }
+
+    .split-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(3.4rem, 10vw, 7.2rem);
+      line-height: 0.95;
+      text-align: center;
+    }
+
+    .glow {
+      background: linear-gradient(90deg, #fff, var(--accent), #ff9a9a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      margin-top: 80px;
+    }
+
+    /* Doctor Image */
+    .doc-photo {
+      width: 100%;
+      height: auto;
+      border-radius: 40px;
+      box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.8);
+      transform-origin: center;
+    }
+
+    .doc-box {
+      position: sticky;
+      top: 140px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      padding: 38px;
+      border-radius: var(--radius);
+    }
+
+    /* Philosophy Block */
+    .philosophy {
+      text-align: center;
+      max-width: 900px;
+      margin: 140px auto 60px;
+    }
+
+    /* --------------------------- RESPONSIVE FIXES --------------------------- */
+    @media(max-width:900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .doc-box {
+        position: relative;
+        top: 0;
+        margin-top: 40px;
+      }
+    }
+
+    /* MOBILE MENU & RESPONSIVE */
+    @media (max-width: 1280px) {
+      .wrap { padding: 0 20px; }
+    }
+
+    @media (max-width: 1024px) {
+      .wrap { padding: 0 18px; }
+      header { top: 8px; }
+      .nav-inner { padding: 12px 16px; max-width: calc(100% - 36px); }
+      .brand { font-size: clamp(1.2rem, 4vw, 1.8rem); }
+      .nav-links { gap: 12px; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .doc-box { position: relative; top: 0; margin-top: 20px; }
+      .doc-photo { max-width: 94%; height: auto; margin: 18px auto 0; border-radius: 28px; }
+      .card { padding: 20px; border-radius: 18px; }
+      .split-title { font-size: clamp(2rem, 8vw, 4.2rem); }
+      .footer-logo { font-size: 1.8rem; }
+      #booking-modal .modal-card { width: calc(100% - 36px); margin: 0 18px; grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-inner { padding: 10px 14px; }
+      .brand { font-size: 1.3rem; }
+      .nav-links { gap: 10px; font-size: 0.9rem; }
+      .split-title { font-size: clamp(1.8rem, 7vw, 3.6rem); }
+      .card { padding: 16px; border-radius: 16px; }
+      main { padding-top: clamp(70px, 12vh, 100px); }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      header { top: 6px; }
+      .nav-inner { padding: 10px 12px; margin: 0 6px; }
+      .brand { font-size: 1.15rem; }
+      .menu-toggle { font-size: 1.4rem; display: inline-flex; }
+      .nav-links { gap: 8px; font-size: 0.85rem; }
+      .split-title { font-size: clamp(1.6rem, 6vw, 3.2rem); line-height: 1.1; }
+      .card { padding: 14px; border-radius: 14px; }
+      #booking-modal .modal-card { padding: 14px; margin: 0 12px; width: calc(100% - 24px); }
+      main { padding-top: clamp(60px, 10vh, 90px); }
+    }
+
+    @media (max-width: 480px) {
+      .brand { font-size: 1rem; }
+      .nav-links { gap: 6px; font-size: 0.8rem; }
+      .split-title { font-size: clamp(1.4rem, 5vw, 2.8rem); }
+      main { padding-top: 50px; }
+      .card { padding: 12px; }
+    }
+
+    /* Mobile menu toggle */
+    @media (max-width: 1023px) {
+      .menu-toggle { display: inline-flex; cursor: pointer; }
+      .nav-links { position: fixed; top: 90px; left: 50%; transform: translateX(-50%); width: 90%; background: var(--glass); backdrop-filter: blur(20px); padding: 20px; border-radius: 24px; flex-direction: column; text-align: center; display: none; z-index: 999; }
+      .nav-links.show-mobile { display: flex !important; }
+    }
+
+    /* Card hover effect */
+    .card { transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .card:hover { transform: translateY(-16px); box-shadow: 0 40px 80px rgba(220, 38, 38, 0.3); }
+
+    /* Footer link hover */
+    footer a { transition: color 0.3s; }
+    footer a:hover { color: #fff; }
+  </style>
+  <!-- WhatsApp floating button -->
+  <style>
+    .whatsapp-fab{position:fixed;right:max(18px,env(safe-area-inset-right,18px));bottom:110px;z-index:1600}
+    .whatsapp-fab a{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none;box-shadow:0 12px 36px rgba(37,211,102,0.22);transition:transform .18s ease}
+    .whatsapp-fab a:hover{transform:translateY(-4px)}
+    .whatsapp-fab i{width:28px;height:28px}
+    @media(max-width:480px){.whatsapp-fab{bottom:94px}.whatsapp-fab a{width:56px;height:56px}}
+  </style>
+
+  <div class="whatsapp-fab" aria-hidden="false">
+    <a href="https://wa.me/917300535365?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20furniture%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <i data-lucide="message-circle"></i>
+    </a>
+  </div>
+  <style>
+  /* Responsive helpers for About page */
+  @media (max-width: 1024px) {
+    .wrap { padding: 0 18px; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .doc-box { position: relative; top: 0; }
+    .doc-photo { max-width: 94%; height: auto; margin: 18px auto 0; }
+    .card { padding: 20px; border-radius: 18px; }
+    .split-title { font-size: clamp(2rem, 8vw, 4.2rem); }
+    .footer-logo { font-size: 1.8rem; }
+    #booking-modal .modal-card { width: calc(100% - 36px); margin: 0 18px; }
+  }
+  @media (max-width: 480px) {
+    .brand { font-size: 1.15rem; }
+    .split-title { font-size: clamp(1.6rem, 10vw, 3.2rem); }
+  }
+  /* Mobile menu toggle */
+  @media (max-width: 1023px) { .menu-toggle { display: inline-flex; } .nav-links { display:none } .nav-links.show-mobile{display:flex} }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+      <div class="nav-inner wrap">
+      <div class="brand">DesignCraft Interiors</div>
+      <button class="menu-toggle"><i data-lucide="menu"></i></button>
+      <nav class="nav-links">
+        <a href="./index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="services.html">Services</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- =============================================================== -->
+  <!-- ======================== MAIN CONTENT ========================= -->
+  <!-- =============================================================== -->
+
+  <main>
+    <section class="wrap">
+
+      <h1 class="split-title">
+        About<br>
+        <span class="glow">DesignCraft Interiors</span>
+      </h1>
+
+      <p style="text-align:center;color:var(--muted);margin-top:22px;font-size:1.25rem;max-width:900px;margin:auto">
+        Custom furniture and interior design studio based in Undri Pisoli, Pune. We design and build modular kitchens,
+        wardrobes, beds, safety doors, dining sets, sofas and chairs.
+      </p>
+
+      <div class="about-grid">
+
+        <!-- LEFT SIDE -->
+        <div>
+            <div class="card">
+            <h3 style="font-size:1.8rem;font-weight:800;margin-bottom:16px">About Our Studio</h3>
+            <p style="color:var(--muted);line-height:1.8">
+              We are a local furniture and interior studio crafting bespoke, functional pieces with attention to
+              material quality and finish. Serving homes across Pune with design-to-installation services.
+            </p>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px">
+
+              <div class="card" style="padding:24px">
+                <h4 style="font-weight:800;margin-bottom:8px">Design Approach</h4>
+                <p style="color:var(--muted);font-size:0.95rem">
+                  We blend functionality with aesthetics — prioritizing space efficiency and durable materials.
+                </p>
+              </div>
+
+              <div class="card" style="padding:24px">
+                <h4 style="font-weight:800;margin-bottom:8px">Client Collaboration</h4>
+                <p style="color:var(--muted);font-size:0.95rem">
+                  Projects are collaborative: we listen, propose options, and refine until you’re delighted.
+                </p>
+              </div>
+
+              <div class="card" style="padding:24px">
+                <h4 style="font-weight:800;margin-bottom:8px">Installation & Support</h4>
+                <p style="color:var(--muted);font-size:0.95rem">
+                  End-to-end service from design through delivery and installation with post-install support.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        
+
+        <!-- RIGHT SIDE -->
+        <div class="doc-box">
+          <img src="pexels-tima-miroshnichenko-5452201.jpg" class="doc-photo" alt="Studio Workshop"
+            loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80'">
+
+          <div style="text-align:center;margin-top:24px">
+            <div style="font-size:1.4rem;font-weight:800">DesignCraft Interiors</div>
+            <div style="color:var(--muted);margin-top:6px">Undri Pisoli, Pune, Maharashtra</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="philosophy">
+        <h2 class="split-title">Philosophy</h2>
+        <p style="font-size:1.35rem;color:var(--muted);margin-top:28px;line-height:1.85">
+          Beautiful, functional interiors are created through thoughtful design and quality craftsmanship.
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- =============================================================== -->
+  <!-- ========================== FOOTER ============================= -->
+  <!-- =============================================================== -->
+  <footer>
+    <div class="wrap"
+      style="padding:80px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px">
+      <div>
+          <div class="footer-logo"
+            style="font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,#fff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+            Unique Furniture & Interior
+          </div>
+          <p style="color:#94a3b8;margin-top:14px">Custom furniture and interior design in Undri Pisoli, Pune.</p>
+        <div class="socials" style="margin-top:20px;font-size:1.6rem">
+          <a href="#"><i data-lucide="instagram"></i></a>
+          <a href="#"><i data-lucide="linkedin"></i></a>
+          <a href="#"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="font-size:1.3rem;font-weight:800;margin-bottom:10px">Quick Links</h4>
+        <ul style="color:#94a3b8;line-height:1.9">
+          <li><a href="services.html" class="hover:text-white">Services</a></li>
+          <li><a href="index.html#testimonials" class="hover:text-white">Patient Stories</a></li>
+          <li><a href="#" class="hover:text-white">New Patient Forms</a></li>
+          <li><a href="#" class="hover:text-white">Insurance & Billing</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="font-size:1.3rem;font-weight:800;margin-bottom:10px">Contact</h4>
+        <p style="color:#94a3b8">
+          Phone: <a href="tel:+917300535365">7300535365</a><br>
+          Email: <a href="mailto:info@uniquefurniture.com">info@uniquefurniture.com</a>
+        </p>
+      </div>
+
+      <div>
+        <h4 style="font-size:1.3rem;font-weight:800;margin-bottom:10px">Location</h4>
+        <p style="color:#94a3b8">
+          Undri Pisoli, Pune<br>
+          Maharashtra, India<br><br>
+          Mon–Sat: 9 AM – 7 PM
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================================== -->
+  <!-- ======================= GSAP ANIMATION ======================== -->
+  <!-- =============================================================== -->
+  <script>
+    lucide.createIcons();
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    /* NAV SCROLL SHRINK */
+    ScrollTrigger.create({
+      onUpdate: self => document.querySelector(".nav-inner")
+        .classList.toggle("scrolled", self.progress > 0.1)
+    });
+
+    /* SPLIT-TEXT TITLES */
+    document.querySelectorAll(".split-title").forEach(el => {
+      const split = new SplitText(el, { type: "chars" });
+      gsap.from(split.chars, {
+        y: 120,
+        opacity: 0,
+        rotationX: -90,
+        stagger: 0.02,
+        duration: 1.4,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+        }
+      });
+    });
+
+    /* FLOATING DOCTOR IMAGE (Continuous breathing effect) */
+    gsap.to(".doc-photo", {
+      y: 16,
+      repeat: -1,
+      yoyo: true,
+      duration: 3.4,
+      ease: "sine.inOut"
+    });
+
+    /* PARALLAX FLOAT ON SCROLL */
+    gsap.to(".doc-photo", {
+      yPercent: -12,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".about-grid",
+        scrub: 1
+      }
+    });
+
+    /* MOBILE MENU */
+    document.querySelector(".menu-toggle").addEventListener("click", () => {
+      document.querySelector(".nav-links").classList.toggle("show-mobile");
+    });
+
+  </script>
+
+</body>
+
+</html>
