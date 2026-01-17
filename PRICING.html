@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Website Package — DesignCraft Interiors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            color: #f8fafc;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 40px 30px;
+            backdrop-filter: blur(16px);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(220, 38, 38, 0.3);
+            border-color: #dc2626;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #dc2626;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #dc2626;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .plan-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 20px 0;
+            color: #dc2626;
+        }
+
+        .plan-price small {
+            font-size: 1rem;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #22c55e;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.4);
+        }
+
+        .features-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            padding: 50px;
+            margin: 60px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 60px 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .check {
+            color: #22c55e;
+            font-size: 1.5rem;
+        }
+
+        .cross {
+            color: #ef4444;
+            font-size: 1.5rem;
+        }
+
+        .faq-section {
+            margin: 60px 0;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .faq-answer {
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.1));
+            border-radius: 24px;
+            padding: 50px;
+            margin-top: 60px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: #dc2626;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .features-section, .comparison-table {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Professional Website Package</h1>
+            <p class="subtitle">Complete, ready-to-deploy website for your business. No monthly fees. Own it forever.</p>
+        </header>
+
+        <div class="pricing-grid">
+            <!-- Basic Package -->
+            <div class="pricing-card">
+                <div class="plan-name">Basic</div>
+                <div class="plan-price">₹12,000<small> one-time</small></div>
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span> Complete website files</li>
+                    <li><span class="check-icon">✓</span> All 4 pages (Home, About, Services, Resources)</li>
+                    <li><span class="check-icon">✓</span> Responsive design</li>
+                    <li><span class="check-icon">✓</span> Professional animations</li>
+                    <li><span class="check-icon">✓</span> WhatsApp integration</li>
+                    <li><span class="check-icon">✓</span> Setup instructions</li>
+                    <li><span class="check-icon">✓</span> 1 month email support</li>
+                </ul>
+                <button class="cta-button" onclick="contact('Basic')">Choose Basic</button>
+            </div>
+
+            <!-- Standard Package (Featured) -->
+            <div class="pricing-card featured">
+                <div class="plan-name">Standard</div>
+                <div class="plan-price">₹18,000<small> one-time</small></div>
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span> Everything in Basic</li>
+                    <li><span class="check-icon">✓</span> Customization (colors, text, images)</li>
+                    <li><span class="check-icon">✓</span> Content updates (up to 3 rounds)</li>
+                    <li><span class="check-icon">✓</span> Hosting setup assistance</li>
+                    <li><span class="check-icon">✓</span> Basic SEO optimization</li>
+                    <li><span class="check-icon">✓</span> Google Maps integration</li>
+                    <li><span class="check-icon">✓</span> 2 months support</li>
+                    <li><span class="check-icon">✓</span> Mobile optimization</li>
+                </ul>
+                <button class="cta-button" onclick="contact('Standard')">Choose Standard</button>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="pricing-card">
+                <div class="plan-name">Premium</div>
+                <div class="plan-price">₹28,000<small> one-time</small></div>
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span> Everything in Standard</li>
+                    <li><span class="check-icon">✓</span> Full content customization</li>
+                    <li><span class="check-icon">✓</span> Logo design (if needed)</li>
+                    <li><span class="check-icon">✓</span> Advanced SEO setup</li>
+                    <li><span class="check-icon">✓</span> Google Analytics integration</li>
+                    <li><span class="check-icon">✓</span> Performance optimization</li>
+                    <li><span class="check-icon">✓</span> 6 months support</li>
+                    <li><span class="check-icon">✓</span> Training session</li>
+                </ul>
+                <button class="cta-button" onclick="contact('Premium')">Choose Premium</button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; font-family: 'Playfair Display', serif;">What's Included</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">Modern Design</div>
+                    <div class="feature-desc">Professional glassmorphism design with smooth animations</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">Fully Responsive</div>
+                    <div class="feature-desc">Perfect on desktop, tablet, and mobile devices</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Fast Performance</div>
+                    <div class="feature-desc">Optimized code for lightning-fast loading</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <div class="feature-title">WhatsApp Integration</div>
+                    <div class="feature-desc">Direct quote requests via WhatsApp</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-title">SEO Ready</div>
+                    <div class="feature-desc">Optimized for search engines</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛠️</div>
+                    <div class="feature-title">Easy to Customize</div>
+                    <div class="feature-desc">Clean code, easy to modify</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-table">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; font-family: 'Playfair Display', serif;">Why Choose Custom Website?</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>This Website</th>
+                        <th>Wix/Squarespace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>One-time Cost</td>
+                        <td><span class="check">✓</span> ₹18,000</td>
+                        <td><span class="cross">✗</span> ₹500/month forever</td>
+                    </tr>
+                    <tr>
+                        <td>3-Year Cost</td>
+                        <td><span class="check">✓</span> ₹18,000</td>
+                        <td><span class="cross">✗</span> ₹18,000+</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Design</td>
+                        <td><span class="check">✓</span> Unique</td>
+                        <td><span class="cross">✗</span> Template</td>
+                    </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td><span class="check">✓</span> Optimized</td>
+                        <td><span class="cross">✗</span> Slower</td>
+                    </tr>
+                    <tr>
+                        <td>Ownership</td>
+                        <td><span class="check">✓</span> You own it</td>
+                        <td><span class="cross">✗</span> Platform owns it</td>
+                    </tr>
+                    <tr>
+                        <td>No Monthly Fees</td>
+                        <td><span class="check">✓</span> Yes</td>
+                        <td><span class="cross">✗</span> No</td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Animations</td>
+                        <td><span class="check">✓</span> GSAP powered</td>
+                        <td><span class="cross">✗</span> Limited</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; font-family: 'Playfair Display', serif;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do I need to pay monthly fees?</div>
+                <div class="faq-answer">No! This is a one-time payment. You only pay for hosting (₹200-300/month) which is much cheaper than website builders.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I customize the website?</div>
+                <div class="faq-answer">Yes! Standard and Premium packages include customization. The code is clean and well-organized, making it easy to modify.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What if I need help after purchase?</div>
+                <div class="faq-answer">All packages include email support (1-6 months depending on package). Premium includes a training session.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Do I need technical knowledge?</div>
+                <div class="faq-answer">No! We provide setup instructions and can help with hosting setup. Standard and Premium include assistance.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I use this for any business?</div>
+                <div class="faq-answer">Yes! While designed for interior design/furniture, it can be customized for any service-based business.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What's the difference from website builders?</div>
+                <div class="faq-answer">Custom code = better performance, unique design, no monthly fees, full ownership. Website builders = templates, monthly fees, limited customization.</div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Ready to Get Started?</h2>
+            <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 30px;">Contact us to purchase or ask questions</p>
+            <a href="https://wa.me/917300535365?text=Hi,%20I'm%20interested%20in%20purchasing%20the%20website%20package." class="contact-button" target="_blank">Contact on WhatsApp</a>
+            <p style="margin-top: 20px; color: #94a3b8;">Or email: your-email@example.com</p>
+        </div>
+    </div>
+
+    <script>
+        function contact(packageName) {
+            const message = `Hi, I'm interested in the ${packageName} package (₹${packageName === 'Basic' ? '12,000' : packageName === 'Standard' ? '18,000' : '28,000'}). Please provide more details.`;
+            window.open(`https://wa.me/917300535365?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
