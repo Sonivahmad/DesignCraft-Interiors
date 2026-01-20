@@ -891,6 +891,11 @@ body::before {
   opacity: 0.7;
 }
 
+.map-wrapper iframe {
+  display: block;
+  width: 100%;
+  min-height: 500px;
+}
 
 
         </style>
@@ -1079,10 +1084,13 @@ body::before {
 <!-- =========================
  CONTACT & MAP
 ========================= -->
-<h2 class="section-title">
-  <span class="section-line">Visit</span>
-  <span class="section-line glow">DesignCraft Interiors</span>
-</h2>
+<section id="contact">
+  <div class="wrap">
+
+    <h2 class="section-title">
+      <span class="section-line">Visit</span>
+      <span class="section-line glow">DesignCraft Interiors</span>
+    </h2>
 
     <p class="consultation-note">
       DesignCraft Interiors currently operates by
@@ -1091,7 +1099,7 @@ body::before {
     </p>
 
     <!-- Map -->
-    <div class="map-wrapper reveal">
+    <div class="map-wrapper">
       <iframe
         src="https://www.google.com/maps?q=DesignCraft+Interiors+Undri+Pisoli+Pune&output=embed"
         width="100%"
@@ -1103,16 +1111,15 @@ body::before {
     </div>
 
     <!-- Map Actions -->
-  <div class="map-actions">
-  <a 
-    href="https://www.google.com/maps/search/?api=1&query=DesignCraft+Interiors+Undri+Pisoli+Pune"
-    target="_blank"
-    rel="noopener"
-    class="directions-btn">
-    📍 Get Directions to DesignCraft Interiors
-  </a>
-</div>
-
+    <div class="map-actions">
+      <a 
+        href="https://www.google.com/maps/search/?api=1&query=DesignCraft+Interiors+Undri+Pisoli+Pune"
+        target="_blank"
+        rel="noopener"
+        class="directions-btn">
+        📍 Get Directions to DesignCraft Interiors
+      </a>
+    </div>
 
   </div>
 </section>
