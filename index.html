@@ -831,6 +831,66 @@ body::before {
   box-shadow: 0 18px 44px rgba(220, 38, 38, 0.55);
 }
 
+/* ===== PREMIUM CENTERED SECTION TITLE ===== */
+.section-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* ✅ horizontal center */
+  justify-content: center;
+  text-align: center;       /* ✅ text center */
+  margin: 0 auto 28px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+}
+
+.section-line {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Glow refinement */
+.section-title .glow {
+  background: linear-gradient(90deg, #ffffff, #dc2626);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Mobile fine-tune */
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* ===== FOOTER BOTTOM CENTER FIX ===== */
+.footer-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* center horizontally */
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 32px;
+  margin-top: 64px;
+}
+
+.footer-bottom-inner {
+  text-align: center;
+  color: #9ca3af;           /* same as gray-500 */
+  font-size: 14px;
+  max-width: 100%;
+}
+
+.footer-bottom-inner span {
+  display: block;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+
 
 
         </style>
@@ -1019,13 +1079,10 @@ body::before {
 <!-- =========================
  CONTACT & MAP
 ========================= -->
-<section id="contact">
-  <div class="wrap text-center">
-
-    <h2 class="split-title">
-      Visit<br>
-      <span class="glow">DesignCraft Interiors</span>
-    </h2>
+<h2 class="section-title">
+  <span class="section-line">Visit</span>
+  <span class="section-line glow">DesignCraft Interiors</span>
+</h2>
 
     <p class="consultation-note">
       DesignCraft Interiors currently operates by
@@ -1115,11 +1172,13 @@ body::before {
         </div>
     </div>
 
-<div class="mt-16 pt-8 border-t border-gray-800 flex justify-center">
-    <div class="text-center text-gray-500 text-sm">
-        © 2026 DesignCraft Interiors. All rights reserved.<br>
-        <span class="mt-1 block opacity-70">Crafting dream homes in Pune since 2022</span>
-    </div>
+<div class="footer-bottom">
+  <div class="footer-bottom-inner">
+    © 2025 DesignCraft Interiors. All rights reserved.<br>
+    <span>Crafting dream homes in Pune since 2022</span>
+  </div>
+</div>
+
 </div>
 </div>
 </div>
