@@ -30,7 +30,6 @@ DesignCraft-Interiors/
 ├── resources.html
 └── README.md
 ```
-
 ---
 
 For more information, visit the website pages or contact us through the site.
