@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Resources — DesignCraft Interiors</title>
+  <title>Gallery — DesignCraft Interiors</title>
   <meta name="description" content="Gallery, product resources and helpful info for DesignCraft Interiors customers in Pune." />
 
   <!-- GSAP -->
@@ -301,6 +301,58 @@
     .nav-links { position: fixed; top: 90px; left: 50%; transform: translateX(-50%); width: 90%; background: var(--glass); backdrop-filter: blur(20px); padding: 20px; border-radius: 24px; flex-direction: column; text-align: center; display: none; z-index: 999; }
     .nav-links.show-mobile { display: flex !important; }
   }
+  /* Furniture Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.06);
+  aspect-ratio: 4 / 3;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.1),
+    rgba(0,0,0,0.75)
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.gallery-overlay h4 {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.gallery-overlay span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
   </style>
 </head>
 <body>
@@ -310,9 +362,11 @@
       <button class="menu-toggle" aria-label="Menu"><i data-lucide="menu"></i></button>
       <nav class="nav-links">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <a href="resources.html" class="active">Gallery</a>
         <a href="services.html">Services</a>
-        <a href="resources.html" class="active">Resources</a>
+        <a href="about.html">About</a>
+       
+       
       </nav>
     </div>
   </header>
@@ -330,6 +384,79 @@
       </div>
 
     </section>
+
+    <section style="margin-top:60px">
+      <h2 class="split-title">Furniture Showcase</h2>
+      <p style="color:var(--muted);max-width:820px;margin-top:12px">
+        A curated look at our modular kitchens, wardrobes, living rooms and custom furniture —
+        crafted with premium materials and timeless design.
+      </p>
+    
+      <div class="gallery-grid">
+    
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Modern Living Room">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Modern Living Room</h4>
+              <span>Custom sofa & TV unit</span>
+            </div>
+          </div>
+        </div>
+    
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0" alt="Luxury Bedroom">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Luxury Bedroom</h4>
+              <span>Wardrobe & bed design</span>
+            </div>
+          </div>
+        </div>
+    
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1" alt="Modular Kitchen">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Modular Kitchen</h4>
+              <span>Soft-close & premium finish</span>
+            </div>
+          </div>
+        </div>
+    
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf" alt="Dining Area">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Dining Area</h4>
+              <span>Solid wood furniture</span>
+            </div>
+          </div>
+        </div>
+    
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1582582621959-48d27397dc69" alt="Office Interior">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Office Interior</h4>
+              <span>Ergonomic & modern</span>
+            </div>
+          </div>
+        </div>
+    
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1598300056393-4aac492f4344" alt="Wardrobe Design">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Wardrobe Design</h4>
+              <span>Space-optimized storage</span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </section>
+    
 
     <section style="margin-top:36px">
       <h2 class="split-title">Preparation</h2>

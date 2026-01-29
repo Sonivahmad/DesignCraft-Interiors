@@ -175,6 +175,7 @@
             --glass: rgba(255, 255, 255, 0.09);
             --radius: 32px;
         }
+        
 
         * {
             margin: 0;
@@ -182,6 +183,10 @@
             box-sizing: border-box;
             text-decoration: none;
         }
+        html {
+  scroll-behavior: smooth;
+}
+
 
         body {
             font-family: 'Inter', sans-serif;
@@ -704,8 +709,8 @@ body::before {
         .socials a:hover {
             color: var(--accent);
         }
-    </style>
-        <style>
+ 
+    
         /* Responsive helpers: improves layout on tablets and phones */
         @media (max-width: 1280px) {
             .wrap { padding: 0 20px; }
@@ -910,9 +915,11 @@ body::before {
             <button class="menu-toggle" aria-label="Menu"><i data-lucide="menu"></i></button>
             <nav class="nav-links">
                 <a href="index.html" class="active">Home</a>
-                <a href="about.html">About</a>
+                <a href="resources.html">Gallery</a>
                 <a href="services.html">Services</a>
-                <a href="resources.html">Resources</a>
+                <a href="about.html">About</a>
+           
+               
             </nav>
 
         </div>

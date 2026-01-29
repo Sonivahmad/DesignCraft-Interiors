@@ -261,22 +261,18 @@
     /* Footer link hover */
     footer a { transition: color 0.3s; }
     footer a:hover { color: #fff; }
-  </style>
-  <!-- WhatsApp floating button -->
-  <style>
+
+/* WhatsApp floating button  */
+
     .whatsapp-fab{position:fixed;right:max(18px,env(safe-area-inset-right,18px));bottom:110px;z-index:1600}
     .whatsapp-fab a{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none;box-shadow:0 12px 36px rgba(37,211,102,0.22);transition:transform .18s ease}
     .whatsapp-fab a:hover{transform:translateY(-4px)}
     .whatsapp-fab i{width:28px;height:28px}
     @media(max-width:480px){.whatsapp-fab{bottom:94px}.whatsapp-fab a{width:56px;height:56px}}
-  </style>
+ 
 
-  <div class="whatsapp-fab" aria-hidden="false">
-    <a href="https://wa.me/917300535365?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20furniture%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-      <i data-lucide="message-circle"></i>
-    </a>
-  </div>
-  <style>
+
+
   /* Responsive helpers for About page */
   @media (max-width: 1024px) {
     .wrap { padding: 0 18px; }
@@ -294,6 +290,49 @@
   }
   /* Mobile menu toggle */         
   @media (max-width: 1023px) { .menu-toggle { display: inline-flex; } .nav-links { display:none } .nav-links.show-mobile{display:flex} }
+ 
+  .nav-links {
+  max-width: calc(100vw - 24px);
+}
+
+  footer {
+  background: rgba(255,255,255,0.04);
+  margin-top: 120px;
+  overflow-x: hidden;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px;
+  padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+}
+
+  .footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 24px 0 40px;
+}
+
+.footer-bottom-inner {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding: 0 16px;
+  line-height: 1.6;
+}
+
   </style>
 </head>
 
@@ -306,9 +345,11 @@
       <button class="menu-toggle"><i data-lucide="menu"></i></button>
       <nav class="nav-links">
         <a href="./index.html">Home</a>
-        <a href="about.html" class="active">About</a>
+        <a href="resources.html">Gallery</a>
         <a href="services.html">Services</a>
-        <a href="resources.html">Resources</a>
+        <a href="about.html" class="active">About</a>
+  
+       
       </nav>
     </div>
   </header>
@@ -394,54 +435,25 @@
     </section>
   </main>
 
-  <!-- =============================================================== -->
-  <!-- ========================== FOOTER ============================= -->
-  <!-- =============================================================== -->
-  <footer>
-    <div class="wrap"
-      style="padding:80px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px">
-      <div>
-          <div class="footer-logo"
-            style="font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,#fff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-            Unique Furniture & Interior
-          </div>
-          <p style="color:#94a3b8;margin-top:14px">Custom furniture and interior design in Undri Pisoli, Pune.</p>
-        <div class="socials" style="margin-top:20px;font-size:1.6rem">
-          <a href="#"><i data-lucide="instagram"></i></a>
-          <a href="#"><i data-lucide="linkedin"></i></a>
-          <a href="#"><i data-lucide="youtube"></i></a>
-        </div>
-      </div>
+   <!-- Professional Footer -->
 
-      <div>
-        <h4 style="font-size:1.3rem;font-weight:800;margin-bottom:10px">Quick Links</h4>
-        <ul style="color:#94a3b8;line-height:1.9">
-          <li><a href="services.html" class="hover:text-white">Services</a></li>
-          <li><a href="index.html#testimonials" class="hover:text-white">Patient Stories</a></li>
-          <li><a href="#" class="hover:text-white">New Patient Forms</a></li>
-          <li><a href="#" class="hover:text-white">Insurance & Billing</a></li>
-        </ul>
+   <footer>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;justify-content:space-between;max-width:1200px;margin:0 auto;padding-top:32px;color:var(--muted)">
+      <div style="min-width:220px;">
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">DesignCraft Interiors</div>
+        <div style="margin-top:8px">Evidence-based practice focused on prevention.</div>
       </div>
-
-      <div>
-        <h4 style="font-size:1.3rem;font-weight:800;margin-bottom:10px">Contact</h4>
-        <p style="color:#94a3b8">
-          Phone: <a href="tel:+917300535365">7300535365</a><br>
-          Email: <a href="mailto:info@uniquefurniture.com">info@uniquefurniture.com</a>
-        </p>
-      </div>
-
-      <div>
-        <h4 style="font-size:1.3rem;font-weight:800;margin-bottom:10px">Location</h4>
-        <p style="color:#94a3b8">
-          Undri Pisoli, Pune<br>
-          Maharashtra, India<br><br>
-          Mon–Sat: 9 AM – 7 PM
-        </p>
-      </div>
+      <div style="min-width:220px;line-height:1.6">Phone: <a href="tel:+917300535365" style="color:var(--muted);text-decoration:none">+91 7300535365</a><br>Email: <a href="mailto:designcraftinteriors.in@gmail.com" style="color:var(--muted);text-decoration:none">designcraftinteriors.in@gmail</a></div>
     </div>
+    <div style="margin-top:28px;text-align:center;color:var(--muted);font-size:13px">© 2026 DesignCraft Interiors</div>
   </footer>
 
+
+<div class="whatsapp-fab" aria-hidden="false">
+  <a href="https://wa.me/917300535365?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20furniture%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i data-lucide="message-circle"></i>
+  </a>
+</div>
   <!-- =============================================================== -->
   <!-- ======================= GSAP ANIMATION ======================== -->
   <!-- =============================================================== -->
